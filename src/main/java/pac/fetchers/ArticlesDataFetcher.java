@@ -1,4 +1,4 @@
-package pac.dataFetchers;
+package pac.fetchers;
 import graphql.schema.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

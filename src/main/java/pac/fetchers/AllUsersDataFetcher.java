@@ -1,4 +1,4 @@
-package pac.dataFetchers;
+package pac.fetchers;
 
 import graphql.schema.DataFetcher;
 import graphql.schema.DataFetchingEnvironment;
@@ -9,25 +9,27 @@ import pac.services.UserService;
 
 import java.util.ArrayList;
 import java.util.List;
+
 @Component
 public class AllUsersDataFetcher implements DataFetcher<List<User>> {
 
     private final UserService userService;
 
     @Autowired
-    AllUsersDataFetcher(UserService userService){
+    AllUsersDataFetcher(UserService userService) {
         this.userService = userService;
     }
 
     @Override
     public List<User> get(DataFetchingEnvironment env) {
-        User user =  env.getSource();
+        User user = env.getSource();
         List<User> friends = new ArrayList<>();
-        if(user !=null){
+        if (user != null) {
             friends = userService.findByIdIn(user.getFriendsIds());
-        }else {
+        } else {
             friends = userService.findAllUsers();
         }
         return friends;
     }
+
 }

@@ -1,7 +1,6 @@
-package pac.graphql_utilities;
+package pac.utilities;
 
 import graphql.GraphQL;
-import graphql.schema.DataFetcher;
 import graphql.schema.GraphQLSchema;
 import graphql.schema.idl.RuntimeWiring;
 import graphql.schema.idl.SchemaGenerator;
@@ -11,9 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
-import pac.dataFetchers.AllUsersDataFetcher;
-import pac.dataFetchers.ArticlesDataFetcher;
-import pac.dataFetchers.UserDataFetcher;
+import pac.fetchers.AllUsersDataFetcher;
+import pac.fetchers.ArticlesDataFetcher;
+import pac.fetchers.UserDataFetcher;
 
 import javax.annotation.PostConstruct;
 import java.io.File;

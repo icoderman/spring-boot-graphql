@@ -1,4 +1,4 @@
-package pac.dataFetchers;
+package pac.fetchers;
 import graphql.schema.*;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +22,6 @@ public class UserDataFetcher implements DataFetcher<User> {
     public User get(DataFetchingEnvironment env) {
         Map args = env.getArguments();
         User user = userService.findOneById(new ObjectId(String.valueOf(args.get("id"))));
-        return null;
+        return user;
     }
 }

@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import pac.graphql_utilities.GraphQlUtility;
+import pac.utilities.GraphQlUtility;
 
 import java.io.IOException;
 
@@ -15,7 +15,9 @@ import java.io.IOException;
 public class MainController {
 
     private GraphQL graphQL;
+
     private GraphQlUtility graphQlUtility;
+
     @Autowired
     MainController(GraphQlUtility graphQlUtility) throws IOException {
         this.graphQlUtility = graphQlUtility;
@@ -23,8 +25,9 @@ public class MainController {
     }
 
     @PostMapping(value = "/query")
-    public ResponseEntity query(@RequestBody String query){
-        ExecutionResult result = graphQL.execute(query);
+    public ResponseEntity query(@RequestBody String query) throws IOException {
+        //ExecutionResult result = graphQL.execute(query);
+        ExecutionResult result = graphQlUtility.createGraphQlObject().execute(query);
         System.out.println("errors: "+result.getErrors());
         return ResponseEntity.ok(result.getData());
     }

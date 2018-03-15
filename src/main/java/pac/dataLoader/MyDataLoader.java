@@ -2,21 +2,30 @@ package pac.dataLoader;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import pac.models.*;
-import pac.repositories.*;
+import pac.models.Article;
+import pac.models.User;
+import pac.repositories.ArticleRepository;
+import pac.repositories.UserRepository;
+
 import javax.annotation.PostConstruct;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
+
 @Component
 public class MyDataLoader {
     private final UserRepository userRepository;
     private final ArticleRepository articleRepository;
+
     @Autowired
-    MyDataLoader(UserRepository userRepository, ArticleRepository articleRepository){
+    MyDataLoader(UserRepository userRepository, ArticleRepository articleRepository) {
         this.userRepository = userRepository;
         this.articleRepository = articleRepository;
     }
-//    @PostConstruct
-    private void generateData(){
+
+    @PostConstruct
+    private void generateData() {
         List<User> users = new ArrayList<>();
         users.add(User.builder().name("Igor").createdAt(new Date()).age(24).articlesIds(new ArrayList<>()).articlesIds(new ArrayList<>()).build());
         users.add(User.builder().name("Ellen").createdAt(new Date()).age(24).articlesIds(new ArrayList<>()).articlesIds(new ArrayList<>()).build());
@@ -35,7 +44,7 @@ public class MyDataLoader {
         users.get(3).setArticlesIds(Arrays.asList(articles.get(0).getId().toHexString()));
         userRepository.save(users);
         List<String> myFriendsIds = new ArrayList<>();
-        for (int i = 1; i<users.size(); i++){
+        for (int i = 1; i < users.size(); i++) {
             myFriendsIds.add(users.get(i).getId().toHexString());
         }
         me.setFriendsIds(myFriendsIds);

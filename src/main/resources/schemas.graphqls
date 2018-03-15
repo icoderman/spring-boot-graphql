@@ -4,7 +4,7 @@ schema {
 
 type Query {
     users: [User]
-    user(id: String): User
+    user(id: String, name: String): User
 }
 
 type User {
